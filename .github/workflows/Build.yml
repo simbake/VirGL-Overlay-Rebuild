@@ -5,13 +5,12 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+defaults:
+ run:
+  working-directory: ./app
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app
 
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +22,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Grant execute permission for gradlew
-      run: chmod +x ./app/gradlew
+      run: chmod +x ./gradlew
 
     - name: Build with Gradle
-      run: ./app/gradlew build --project-dir ./app
+      run: ./gradlew build
